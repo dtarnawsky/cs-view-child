@@ -1,0 +1,53 @@
+<div class="ChatHeader">
+    <ion-row>
+        <ion-col size="1" class="firstCol_head">
+            <ion-icon class="backIconMain backRightIconHead text-white" name="caret-back-sharp" (click)="goBack()">
+            </ion-icon>
+        </ion-col>
+        <ion-col size="2" class="secondCol_head">
+            <img [src]="user?.image || profileInfo?.image" alt="" class="SingleChatItem_UserPic" />
+        </ion-col>
+        <ion-col size="7" class="thirdCol_head">
+            <span class="SingleChatItem_UserName font_5 text-white d-block">{{user?.name || profileInfo?.name}}</span>
+            <span class="SingleChatItem_Msg font_3 fontlightGrey d-block">{{user?.designation || user.about ||
+                profileInfo.about}}</span>
+        </ion-col>
+        <ion-col size="2" class="fourthCol_head">
+            <ion-fab class="transparent_btn ChatMenuOption" vertical="center" horizontal="end">
+                <ion-fab-button class="plusBtn">
+                    <ion-icon name="ellipsis-vertical"></ion-icon>
+                </ion-fab-button>
+                <ion-fab-list class="Community_addOptions" side="bottom">
+                    <ion-fab-button class="font_3">Block</ion-fab-button>
+                    <ion-fab-button class="font_3">Report</ion-fab-button>
+                </ion-fab-list>
+            </ion-fab>
+        </ion-col>
+    </ion-row>
+</div>
+<ion-content #content>
+    <div class="MainChatBubble" *ngFor="let item of chatArray">
+        <p>test</p>
+        <div class="chatBubble send_bubble" *ngIf="item?.sender === senderProfileID">
+            <p class="Chat_Msg">
+                <span class="ChatText font_3 text-white">{{item?.message}}</span>
+                <span class="ChatTime fontlightGrey">{{item?.timestamp}}</span>
+                <ion-icon name="checkmark-outline" class="fontlightGrey d-none"></ion-icon>
+                <ion-icon name="checkmark-done-outline" class="textblue"></ion-icon>
+            </p>
+        </div>
+        <div class="chatBubble receiver_bubble" *ngIf="item?.sender !== senderProfileID">
+            <p class="Chat_Msg">
+                <span class="ChatText font_3 text-white">{{item?.message}}</span>
+                <span class="ChatTime fontlightGrey">{{item?.timestamp}}</span>
+            </p>
+        </div>
+        <!-- <app-chat-receiver-bubble [chat]="item" *ngIf="item.receiver == senderProfileID" ></app-chat-receiver-bubble>
+        <app-chat-sender-bubble [chat]="item" *ngIf="item.sender == 'send'"></app-chat-sender-bubble> -->
+    </div>
+    <div class="MessageBox">
+        <div class="AddCommentBoxBottom">
+            <!-- <app-chat-write-box (textMessage)="sendTextMessage($event)"></app-chat-write-box> -->
+        </div>
+    </div>
+</ion-content>

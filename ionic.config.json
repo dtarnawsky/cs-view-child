@@ -1,0 +1,7 @@
+{
+  "name": "cs-view-child",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
